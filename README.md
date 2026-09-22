@@ -101,3 +101,120 @@ career-discovery-ai/
 - **`test_recommendation.py`** – Tests different student profiles and edge cases.
 - **`app.py`** – Final Streamlit user interface.
 ---  
+
+## Recommendation Logic
+
+The project uses the pretrained **all-MiniLM-L6-v2** Sentence Transformer.
+
+Each career profile and student description is converted into a **384-dimensional embedding**.
+
+```text
+Student Description → 384-D Embedding
+                         ↓
+                  Cosine Similarity
+                         ↑
+Career match_text → 384-D Embeddings
+                         ↓
+                 Top 3 Careers
+```
+The model is **pretrained**; this project uses it for inference rather than training a new neural network.
+
+---
+
+## Development Journey
+
+The recommendation system went through three approaches:
+
+### 1. `career_text`
+Initially, career description, skills, interests, and work style were combined into one profile.
+The system worked technically, but some recommendations were not logically strong.
+
+### 2. Weighted Matching
+Separate similarities were tested using:
+
+```text
+Interests       35%
+Skills          25%
+Description     25%
+Work Style      15%
+```
+This improved some results but remained inconsistent.
+
+### 3. `match_text` – Final Approach
+The main problem was **data representation**.
+`career_text` described **what a career is**, while student input described **what the student enjoys**.
+Therefore, `match_text` was created to describe **what kind of student may enjoy each career**.
+This produced better recommendations while keeping the final algorithm simple.
+
+---
+
+## Testing
+
+The final system was tested with different profiles:
+
+| Student Profile | Top Recommendation |
+|---|---|
+| Data-focused | Data Scientist |
+| Programming-focused | Software Engineer |
+| Design-focused | UI/UX Designer |
+| Business-focused | Project Manager |
+| Marketing-focused | Social Media Manager |
+
+Empty, very short, and mixed-interest inputs were also tested.
+
+---
+
+## Run the Project
+
+Activate the virtual environment:
+
+```bash
+source .venv/bin/activate
+```
+Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+Prepare the dataset:
+```bash
+python src/prepare_data.py
+```
+Test embeddings:
+```bash
+python src/test_embeddings.py
+```
+Run the recommendation engine:
+```bash
+python src/recommender.py
+```
+Run all recommendation tests:
+```bash
+python test_recommendation.py
+```
+Run the final application:
+```bash
+streamlit run app.py
+```
+---
+
+## Key Learning
+
+The main learning from this project was that **better data representation can be more important than increasing algorithm complexity**.
+Changing from `career_text` to `match_text` improved the recommendations without requiring a more complicated model.
+
+---
+
+## Limitations
+
+- Currently limited to 50 careers
+- Results depend on the quality of student input
+- Similar careers may overlap semantically
+- Does not consider academic performance or job-market data
+- Provides career exploration, not career prediction
+---
+
+**Omi Chaurasia**
+
+This is my 4 Day Workshop project covering data preparation, NLP, machine learning, recommendation logic, testing, and application development.
+
+## Thank You!
