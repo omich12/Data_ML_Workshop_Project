@@ -21,6 +21,29 @@ Example:
 3. Backend Developer
 ---
 
+## How It Works
+
+```text
+Career Dataset
+      ↓
+Data Preparation
+      ↓
+Career Match Profiles
+      ↓
+Sentence Embeddings
+      ↓
+Student Description → Student Embedding
+      ↓
+Cosine Similarity
+      ↓
+Rank 50 Careers
+      ↓
+Top 3 Career Matches
+      ↓
+Streamlit Application
+```
+---
+
 ## Main Features
 
 - Natural-language student input
@@ -68,7 +91,6 @@ career-discovery-ai/
 ├── test_recommendation.py
 └── requirements.txt
 ```
-
 ### Main Files
 
 - **`careers.csv`** – Original dataset containing 50 career profiles.
