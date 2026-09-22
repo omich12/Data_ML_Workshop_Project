@@ -1,6 +1,6 @@
 # Career Discovery AI - Project
 
-# Career Discovery AI
+## Career Discovery AI
 
 Career Discovery AI is a beginner-friendly **Machine Learning and Natural Language Processing (NLP)** project that helps students explore career paths based on their interests, strengths, skills, and preferred working style.
 
